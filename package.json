@@ -1,0 +1,33 @@
+{
+  "name": "telnet-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Telnet protocol interactions",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "telnet-mcp-server": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "telnet",
+    "server"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "fast-check": "^3.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
