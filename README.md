@@ -1,49 +1,18 @@
 # Telnet MCP Server
 
-Model Context Protocol (MCP) 서버로 Telnet 프로토콜을 통해 원격 서버와 상호작용할 수 있습니다.
+A Model Context Protocol (MCP) server that enables interaction with remote servers via the Telnet protocol.
 
-## 기능
+## Features
 
-- Telnet 서버 연결 및 세션 관리
-- 명령 전송 및 응답 수신
-- Telnet 프로토콜 특수 명령 처리 (IAC, 옵션 협상)
-- 여러 세션 동시 관리
-- ANSI 제어 코드 보존
+- Telnet server connection and session management
+- Command transmission and response reception
+- Telnet protocol special command handling (IAC, option negotiation)
+- Multiple concurrent session management
+- ANSI control code preservation
 
-## 설치
+## MCP Configuration
 
-### NPX로 직접 실행 (권장)
-
-```bash
-npx telnet-mcp
-```
-
-### Git에서 설치
-
-```bash
-npm install -g git+https://github.com/YUChoe/telnet-mcp.git
-```
-
-## MCP 설정
-
-### Kiro에서 사용
-
-`.kiro/settings/mcp.json` 또는 `~/.kiro/settings/mcp.json`에 추가:
-
-```json
-{
-  "mcpServers": {
-    "telnet": {
-      "command": "npx",
-      "args": ["-y", "telnet-mcp"],
-      "disabled": false,
-      "autoApprove": []
-    }
-  }
-}
-```
-
-Git 저장소에서 직접 사용하는 경우:
+### Using from Git repository:
 
 ```json
 {
@@ -58,16 +27,96 @@ Git 저장소에서 직접 사용하는 경우:
 }
 ```
 
-### Claude Desktop에서 사용
+## Available Tools
 
-`claude_desktop_config.json`에 추가:
+### telnet_connect
+Connects to a Telnet server.
+
+**Arguments:**
+- `host` (string): Host address
+- `port` (number): Port number
+- `timeout` (number, optional): Connection timeout (default: 5000ms)
+
+**Returns:** Session ID
+
+### telnet_send
+Sends a command to an active session.
+
+**Arguments:**
+- `sessionId` (string): Session ID
+- `command` (string): Command to send
+
+### telnet_read
+Reads response from the session buffer.
+
+**Arguments:**
+- `sessionId` (string): Session ID
+- `waitMs` (number, optional): Data wait time
+- `encoding` (string, optional): Encoding method (utf8, base64, hex, binary)
+
+**Returns:** Data from buffer
+
+### telnet_disconnect
+Terminates a session.
+
+**Arguments:**
+- `sessionId` (string): Session ID
+
+### telnet_list
+Lists all active sessions.
+
+**Returns:** Array of session information
+
+## Development
+
+### Build
+
+```bash
+npm run build
+```
+
+### Test
+
+```bash
+npm test
+```
+
+### Development Mode
+
+```bash
+npm run dev
+```
+
+## License
+
+MIT
+
+---
+
+# Telnet MCP Server (한국어)
+
+Model Context Protocol (MCP) 서버로 Telnet 프로토콜을 통해 원격 서버와 상호작용할 수 있습니다.
+
+## 기능
+
+- Telnet 서버 연결 및 세션 관리
+- 명령 전송 및 응답 수신
+- Telnet 프로토콜 특수 명령 처리 (IAC, 옵션 협상)
+- 여러 세션 동시 관리
+- ANSI 제어 코드 보존
+
+## MCP 설정
+
+### Git 저장소에서 직접 사용하는 경우:
 
 ```json
 {
   "mcpServers": {
     "telnet": {
       "command": "npx",
-      "args": ["-y", "telnet-mcp"]
+      "args": ["-y", "git+https://github.com/YUChoe/telnet-mcp"],
+      "disabled": false,
+      "autoApprove": []
     }
   }
 }
